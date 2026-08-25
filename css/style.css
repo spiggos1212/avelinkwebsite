@@ -829,6 +829,12 @@ img {
 
 .price-badge {
   display: inline-block;
+  /* Ρητά η sans-serif γραμματοσειρά του σώματος (όχι κληρονομιά) — το
+     badge του "5–8 persons" κάθεται μέσα σε <h2> (για να "τυλίγεται"
+     σωστά δίπλα στο "(upon availability)" σε mobile) και χωρίς αυτό θα
+     κληρονομούσε τη διακοσμητική serif γραμματοσειρά των τίτλων,
+     φαίνοντας πιο "έντονο" από το badge του "1–4 persons". */
+  font-family: "Open Sans", "Segoe UI", Roboto, Arial, sans-serif;
   font-size: 0.78rem;
   font-weight: 600;
   padding: 0.3rem 0.85rem;
