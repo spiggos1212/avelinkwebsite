@@ -7,37 +7,37 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://avelink.gr/about/</loc>
+    <loc>https://avelink.gr/about</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://avelink.gr/taxi-service/</loc>
+    <loc>https://avelink.gr/taxi-service</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://avelink.gr/tour-service/</loc>
+    <loc>https://avelink.gr/tour-service</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://avelink.gr/partners/</loc>
+    <loc>https://avelink.gr/partners</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://avelink.gr/terms-and-conditions/</loc>
+    <loc>https://avelink.gr/terms-and-conditions</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://avelink.gr/privacy-policy/</loc>
+    <loc>https://avelink.gr/privacy-policy</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>

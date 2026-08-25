@@ -1,0 +1,47 @@
+# Cloudflare Pages redirects (https://developers.cloudflare.com/pages/configuration/redirects/)
+#
+# 1) Canonicalize our own pages: Cloudflare Pages auto-redirects
+#    /page.html -> /page, but a trailing-slash request (/page/) to a flat
+#    page.html file isn't documented as handled the same way — redirect it
+#    explicitly so it never 404s.
+# 2) Preserve SEO from the current avelink.gr (WordPress) once this domain
+#    replaces it: those URLs are already indexed/ranking, so map each old
+#    slug to its closest equivalent here instead of letting it 404.
+#    "/properties/" -> "/#properties" and "/contact/" -> "/#contact" because
+#    those are homepage sections now, not standalone pages. "/companyinfo/"
+#    (legal company registration info) and "/orderfood/" (food ordering)
+#    have no equivalent content on this site yet — reviewed and mapped to
+#    the closest existing page for now.
+# 3) The old site's Greek version (/el/*) has no equivalent here yet (this
+#    site is English-only) — sent to the English homepage rather than 404.
+
+# --- our own pages: trailing slash -> canonical no-slash form ---
+/about/                 /about                  301
+/partners/              /partners               301
+/taxi-service/          /taxi-service           301
+/tour-service/          /tour-service           301
+/terms-and-conditions/  /terms-and-conditions   301
+/privacy-policy/        /privacy-policy         301
+
+# --- renamed pages from the old WordPress site ---
+/aboutus/       /about          301
+/aboutus        /about          301
+/tours/         /tour-service   301
+/tours          /tour-service   301
+/support/       /taxi-service   301
+/support        /taxi-service   301
+
+# --- pages that became homepage sections ---
+/properties/    /#properties    301
+/properties     /#properties    301
+/contact/       /#contact       301
+/contact        /#contact       301
+
+# --- pages with no equivalent yet: closest match ---
+/companyinfo/   /about          301
+/companyinfo    /about          301
+/orderfood/     /               301
+/orderfood      /               301
+
+# --- old Greek site: no translated version here yet ---
+/el/*           /               301
