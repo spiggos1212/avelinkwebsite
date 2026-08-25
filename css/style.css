@@ -1357,4 +1357,20 @@ img {
     padding: 0.7rem 0.85rem;
     font-size: 0.92rem;
   }
+
+  /* Στο κινητό, το scroll προς #properties (π.χ. από το nav link ή το
+     "Book a Property") σταματάει ήδη στο ελάχιστο δυνατό ύψος κάτω από
+     το fixed header (scroll-margin-top = --header-height στο .properties
+     — δεν μπορεί να μειωθεί άλλο χωρίς ο τίτλος να κρυφτεί πίσω του).
+     Το μεγάλο top padding + το κενό κάτω από τον τίτλο όμως έτρωγαν
+     αρκετό ύψος στο μικρό viewport, με αποτέλεσμα η πρώτη κάρτα (μαζί
+     με την εικόνα της) να μη χωράει ολόκληρη στην ορατή περιοχή. Τα
+     μαζεύουμε ώστε να φαίνεται ολόκληρη η κάρτα με την εικόνα. */
+  .properties {
+    padding-top: 2rem;
+  }
+
+  .properties .section-title {
+    margin-bottom: 1.25rem;
+  }
 }
