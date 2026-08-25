@@ -18,7 +18,7 @@
 # --- our own pages: trailing slash -> canonical no-slash form ---
 /about/                 /about                  301
 /partners/              /partners               301
-/taxi-service/          /taxi-service           301
+/support/               /support                301
 /tour-service/          /tour-service           301
 /terms-and-conditions/  /terms-and-conditions   301
 /privacy-policy/        /privacy-policy         301
@@ -28,8 +28,11 @@
 /aboutus        /about          301
 /tours/         /tour-service   301
 /tours          /tour-service   301
-/support/       /taxi-service   301
-/support        /taxi-service   301
+
+# --- taxi-service was renamed to /support (was already indexed under
+#     /taxi-service, so keep redirecting it rather than letting it 404) ---
+/taxi-service/  /support        301
+/taxi-service   /support        301
 
 # --- pages that became homepage sections ---
 /properties/    /#properties    301
