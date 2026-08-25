@@ -296,14 +296,6 @@ img {
   gap: 1rem;
 }
 
-.lang-select {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: 0.4rem 0.6rem;
-  background: var(--color-surface);
-  font-size: 0.9rem;
-}
-
 /* Hamburger (mobile) */
 .navbar__toggle {
   display: none;
