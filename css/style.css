@@ -1,0 +1,1337 @@
+/* =========================================================
+   AVELINK PRACTICE — style.css
+   Placeholder χρώματα/εικόνες, φτιαγμένο για εξάσκηση.
+   ========================================================= */
+
+/* ---------- Reset & base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Open Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+}
+
+/* Ίδια γραμματοσειρά τίτλων με το avelink.gr */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-weight: 400;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- Design tokens (placeholder palette) ---------- */
+:root {
+  --color-primary: #1f6f78;   /* πράσινο-μπλε πρωτεύον */
+  --color-primary-dark: #154f56;
+  --color-accent: #e8985e;    /* πορτοκαλί accent */
+  --color-brand-green: var(--color-footer-bg); /* πάντα ίδιο με το φόντο του footer */
+  --color-brand-green-dark: #141f25; /* σκουρότερη απόχρωση για hover */
+  --color-bg: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-text: #26302e;
+  --color-text-muted: #5c6b68;
+  --color-border: #e1e3e0;
+
+  --color-footer-bg: #1d2e37; /* λίγο πιο ανοιχτό από πριν */
+  --color-footer-text: #cbd5d3;
+
+  --radius: 10px;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --max-width: 1180px;
+  --header-height: 96px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 2.5rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.7rem;
+  /* Τετράγωνο περίγραμμα σε όλα τα κουμπιά — border-radius: 0, ίδιο με
+     τα κουμπιά (π.χ. "BOOK NOW") του πραγματικού avelink.gr. */
+  border-radius: 0;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: #d97f3f;
+  transform: translateY(-2px);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Μαύρο κουμπί (π.χ. "Book your transfer") — πιο σοβαρό/ουδέτερο ύφος
+   αντί για το πορτοκαλί accent του .btn--primary. */
+.btn--dark {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.btn--dark:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+/* Σκούρο πράσινο κουμπί (π.χ. "Book your tour") — ίδιο βαθύ πράσινο-μπλε
+   με τους τίτλους/hover χρώματα του site (--color-primary-dark). */
+.btn--green {
+  background: var(--color-primary-dark);
+  color: #fff;
+}
+
+.btn--green:hover {
+  background: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* "Book Now" στο header — λευκό ghost button όπως στο avelink.gr:
+   διάφανο φόντο/λευκό περίγραμμα, γεμίζει λευκό στο hover. Μόλις το
+   header γίνει συμπαγές (λευκό φόντο), γυρνάει σε συμπαγές accent
+   ώστε να παραμένει ορατό. */
+.btn--book {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.btn--book:hover {
+  background: #fff;
+  color: var(--color-primary-dark);
+}
+
+/* Μόλις γίνει scroll (συμπαγές header), το Book Now γίνεται πράσινο —
+   ίδιο πράσινο με το σήμα του Avelink (sampled από το logo mark) */
+.site-header--solid .btn--book {
+  background: var(--color-brand-green);
+  color: #fff;
+  border-color: var(--color-brand-green);
+}
+
+.site-header--solid .btn--book:hover {
+  background: var(--color-brand-green-dark);
+  border-color: var(--color-brand-green-dark);
+}
+
+/* Το "Book Now" μέσα στο hero είναι πάντα συμπαγές λευκό με σκούρο
+   κείμενο, ίδιο με το αντίστοιχο κουμπί του avelink.gr — ανεξάρτητο
+   από την κατάσταση (διάφανο/συμπαγές) του header. */
+.hero__buttons .btn--book {
+  background: #fff;
+  color: var(--color-text);
+  border-color: #fff;
+}
+
+.hero__buttons .btn--book:hover {
+  background: #f0f0f0;
+  color: var(--color-text);
+}
+
+/* =========================================================
+   HEADER / NAVIGATION
+   ========================================================= */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: transparent;
+  box-shadow: none;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Μόλις γίνει scroll, το header "συμπαγιάζει" (λευκό φόντο + σκούρο κείμενο) */
+.site-header.site-header--solid {
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+.navbar {
+  max-width: var(--max-width);
+  height: var(--header-height);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.navbar__logo a {
+  display: block;
+  line-height: 0;
+}
+
+.navbar__logo-img {
+  height: 68px;
+  width: auto;
+  display: block;
+}
+
+/* Άσπρο λογότυπο πάνω στο διάφανο header (video/gradient), έγχρωμο
+   μόλις γίνει συμπαγές (scroll) */
+.navbar__logo-img--color {
+  display: none;
+}
+
+.site-header--solid .navbar__logo-img--white {
+  display: none;
+}
+
+.site-header--solid .navbar__logo-img--color {
+  display: block;
+}
+
+.navbar__menu {
+  display: flex;
+  gap: 1.75rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.navbar__menu > li {
+  position: relative;
+}
+
+.navbar__menu > li > a {
+  font-weight: 600;
+  color: #fff;
+  padding: 0.5rem 0;
+  transition: color 0.15s ease;
+}
+
+.site-header--solid .navbar__menu > li > a {
+  color: var(--color-text);
+}
+
+.navbar__menu > li > a:hover {
+  color: var(--color-accent);
+}
+
+.site-header--solid .navbar__menu > li > a:hover {
+  color: var(--color-primary);
+}
+
+/* Dropdown (Services) */
+.has-dropdown .dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.15s ease;
+}
+
+.has-dropdown:hover .dropdown,
+.has-dropdown.is-open .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown li a {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  color: var(--color-text);
+}
+
+.dropdown li a:hover {
+  background: var(--color-bg);
+  color: var(--color-primary);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lang-select {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.6rem;
+  background: var(--color-surface);
+  font-size: 0.9rem;
+}
+
+/* Hamburger (mobile) */
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar__toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.25s ease;
+}
+
+.site-header--solid .navbar__toggle span {
+  background: var(--color-text);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh; /* σωστό ύψος σε mobile browsers (χωρίς τα address bars) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  overflow: hidden;
+}
+
+/* Background hero video (index.html) */
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* decorative shapes — μένουν ορατά μόνο όταν ΔΕΝ υπάρχει video (fallback gradient) */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  z-index: -1;
+}
+
+.hero::before {
+  width: 420px;
+  height: 420px;
+  top: -140px;
+  right: -100px;
+}
+
+.hero::after {
+  width: 300px;
+  height: 300px;
+  bottom: -120px;
+  left: -80px;
+  background: rgba(232, 152, 94, 0.18);
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 0 1.5rem;
+}
+
+.hero__content h1 {
+  font-size: clamp(2rem, 5vw, 2.625rem);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.hero__content p {
+  font-size: 1.0625rem;
+  line-height: 1.41;
+  margin-bottom: 2.3125rem;
+  opacity: 0.95;
+}
+
+.hero__buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   PROPERTIES
+   ========================================================= */
+.properties {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  /* Το header είναι fixed (--header-height), οπότε χωρίς αυτό το anchor
+     scroll (π.χ. από το nav link "Properties") θα προσγείωνε ακριβώς στην
+     κορυφή του section, κρύβοντας τον τίτλο "Our Properties" πίσω από το
+     header και αφήνοντας ορατό μόνο το carousel. */
+  scroll-margin-top: var(--header-height);
+}
+
+.properties__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.75rem;
+}
+
+.property-card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.property-card__image {
+  height: 170px;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.property-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.property-card:hover .property-card__image img {
+  transform: scale(1.06);
+}
+
+/* placeholder εικόνων — διαφορετικό χρώμα ανά κάρτα */
+.placeholder-img {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+}
+
+.property-card:nth-child(1) .placeholder-img {
+  background: linear-gradient(135deg, #1f6f78, #59b0a8);
+}
+.property-card:nth-child(2) .placeholder-img {
+  background: linear-gradient(135deg, #6a4c93, #a084ca);
+}
+.property-card:nth-child(3) .placeholder-img {
+  background: linear-gradient(135deg, #b5563c, #e8985e);
+}
+.property-card:nth-child(4) .placeholder-img {
+  background: linear-gradient(135deg, #2e5077, #4d84b0);
+}
+.property-card:nth-child(5) .placeholder-img {
+  background: linear-gradient(135deg, #3c7a56, #7fb88f);
+}
+
+.property-card__body {
+  padding: 1.25rem 1.4rem 1.6rem;
+}
+
+.property-card__body h3 {
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+}
+
+.property-card__body p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* Room-type links μέσα σε κάθε property card — αυτολεξεί hyperlinks
+   προς το πραγματικό booking engine (avelink.reserve-online.net),
+   όπως ακριβώς και στο avelink.gr */
+.property-card__rooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.property-card__rooms a {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  background: var(--color-bg);
+  color: var(--color-primary-dark);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.property-card__rooms a:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* =========================================================
+   YOUR BENEFITS
+   ========================================================= */
+.benefits {
+  background: var(--color-surface);
+  padding: 5rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.benefits__grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+/* Homepage "Your Benefits" (6 items) — πάντα 3 στήλες, δηλ. 3 πάνω / 3 κάτω */
+.benefits--photo .benefits__grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 700px) {
+  .benefits--photo .benefits__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .benefits--photo .benefits__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benefit-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.benefit-card__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.benefit-card__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Στο σκούρο "Your Benefits" (homepage) τα icons γίνονται πράσινα,
+   ίδιο πράσινο με το λογότυπο, για να ξεχωρίζουν πάνω στη φωτογραφία */
+.benefits--photo .benefit-card__icon {
+  border-color: var(--color-brand-green);
+  color: var(--color-brand-green);
+}
+
+.benefit-card h3 {
+  color: var(--color-primary-dark);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-card p {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+/* Modifier: σκούρο background φωτογραφίας (Your Benefits, homepage) —
+   ίδια τεχνική με avelink.gr: background-image + darken filter πάνω σε
+   ένα ::before, το κείμενο μένει από πάνω χάρη στο αρνητικό z-index. */
+.benefits--photo {
+  position: relative;
+  z-index: 0; /* δημιουργεί δικό του stacking context, ώστε το ::before
+                 (z-index:-1) να μένει ΠΙΣΩ από το δικό του background
+                 αντί να "διαφεύγει" πίσω από ΟΛΗ τη σελίδα */
+  overflow: hidden;
+  border-top: none;
+  border-bottom: none;
+}
+
+.benefits--photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../images/benefits-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(24%) contrast(81%);
+  z-index: -1;
+}
+
+.benefits--photo .section-title,
+.benefits--photo .benefit-card h3 {
+  color: #fff;
+}
+
+.benefits--photo .benefit-card p {
+  color: #dddddd;
+}
+
+/* Μικρό "kicker" label πάνω από τον τίτλο — αυτολεξεί από avelink.gr
+   ("WHY CHOOSE US" πάνω από "Your Benefits") */
+.benefits__kicker {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--color-brand-green);
+  margin-bottom: 0.75rem;
+}
+
+/* =========================================================
+   REVIEWS / COMMENTS
+   ========================================================= */
+.reviews {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.75rem;
+}
+
+.review-card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+
+.review-card__avatar {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 0.75rem;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 2px solid var(--color-primary);
+}
+
+.review-card__stars {
+  color: var(--color-accent);
+  letter-spacing: 2px;
+  margin-bottom: 0.75rem;
+}
+
+.review-card__text {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+}
+
+.review-card__author {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Γενικός υπότιτλος κάτω από .section-title (πχ "We take pride in...") */
+.reviews__subtitle {
+  text-align: center;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: -1.5rem auto 2rem;
+  font-size: 1rem;
+}
+
+/* =========================================================
+   CAROUSEL (γενικό component — reviews + properties)
+   ========================================================= */
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.carousel__viewport {
+  flex: 1;
+  overflow: hidden;
+}
+
+.carousel__track {
+  display: flex;
+  gap: 35px;
+  transition: transform 0.5s ease;
+  touch-action: pan-y; /* επιτρέπει κάθετο scroll της σελίδας, ενώ το
+                           οριζόντιο drag το χειρίζεται το JS (swipe) */
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel__track:active {
+  cursor: grabbing;
+}
+
+.carousel__slide {
+  flex: 0 0 auto;
+}
+
+.carousel__arrow {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-primary-dark);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.carousel__arrow:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Modifier: reviews carousel (screenshots κριτικών πελατών) */
+.carousel--reviews .carousel__slide {
+  width: min(360px, 82vw);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.carousel--reviews .carousel__slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Modifier: properties carousel — το .property-card έχει ήδη δικό του
+   background/shadow, εδώ ορίζουμε μόνο το πλάτος του slide */
+.carousel--properties .carousel__slide {
+  width: min(320px, 85vw);
+}
+
+@media (max-width: 600px) {
+  .carousel {
+    gap: 0.5rem;
+  }
+
+  .carousel__arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+
+  .carousel__track {
+    gap: 16px;
+  }
+}
+
+/* =========================================================
+   PRICE TABLES (Taxi Service)
+   ========================================================= */
+/* Επικεφαλίδα ενότητας τιμοκαταλόγου + badge (π.χ. "1–4 persons") —
+   ώστε να είναι σαφές σε ποιον αφορά κάθε πίνακας τιμών, ίδιο ύφος με
+   τα pill-badges των δωματίων στο "Our Properties". */
+.price-section__head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0;
+}
+
+.price-section__head h2 {
+  margin-bottom: 0;
+}
+
+.price-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+  /* Πιο "σοβαρό" ύφος: διακριτικό outline αντί για γεμάτο έντονο χρώμα */
+  background: transparent;
+  border: 1px solid var(--color-primary-dark);
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+}
+
+/* Σημείωση δίπλα σε τίτλο (π.χ. "(upon availability)") — πιο διακριτικό
+   από badge, μέρος της ίδιας πρότασης με τον τίτλο. */
+.price-section__note {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.price-table-wrap {
+  overflow-x: auto;
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  min-width: 420px;
+}
+
+.price-table th,
+.price-table td {
+  text-align: left;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.price-table th {
+  background: var(--color-footer-bg);
+  color: #fff;
+  font-weight: 600;
+}
+
+.price-table td:last-child,
+.price-table th:last-child {
+  text-align: right;
+  font-weight: 600;
+}
+
+.price-table td:last-child {
+  color: var(--color-primary-dark);
+}
+
+.price-table th:last-child {
+  /* Το "Price" μένει λευκό σαν τον υπόλοιπο header — αλλιώς το σκούρο
+     var(--color-primary-dark) πάνω στο σκούρο φόντο του header γίνεται
+     αόρατο. */
+  color: #fff;
+}
+
+.price-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.price-table tbody tr:nth-child(even) {
+  background: var(--color-bg);
+}
+
+.price-table tbody tr:hover {
+  background: rgba(31, 111, 120, 0.08);
+}
+
+/* Info list (Important Information) — κάθε γραμμή με ένα μικρό πράσινο
+   check icon αντί για απλή τελεία, πιο "ζωντανό" από το γυμνό <ul>. */
+.info-list {
+  list-style: none;
+  margin: 1rem 0 1.5rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.info-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+.info-list__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 0.15rem;
+  border-radius: 50%;
+  background: var(--color-brand-green);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ενότητα με το τελικό CTA (π.χ. "Book your transfer") — λίγο πιο
+   κεντραρισμένη ώστε το κουμπί να ξεχωρίζει στο τέλος της σελίδας. */
+.page-content--cta {
+  text-align: left;
+}
+
+.page-content--cta .info-list {
+  max-width: 800px;
+}
+
+/* =========================================================
+   PARTNER FORM
+   ========================================================= */
+.partner-form {
+  max-width: 480px;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-row label,
+.form-row__label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.form-row input,
+.form-row select {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.form-row__radios {
+  display: flex;
+  gap: 1.5rem;
+  font-weight: 400;
+}
+
+/* Μπάρα "αριθμός καταλυμάτων" (1–25) — απλό styled range slider */
+.form-row__range-value {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}
+
+.form-row__range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-border);
+  outline: none;
+  margin: 0.4rem 0;
+}
+
+.form-row__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary-dark);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1px var(--color-primary-dark);
+  cursor: pointer;
+}
+
+.form-row__range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary-dark);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 1px var(--color-primary-dark);
+  cursor: pointer;
+}
+
+.form-row__range::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-border);
+}
+
+.form-row__range-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.form-row__radios label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 400;
+}
+
+.partner-form .btn {
+  align-self: flex-start;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-text);
+  padding: 4rem 1.5rem 1.5rem;
+}
+
+.footer__grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__col h3,
+.footer__col h4 {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.footer__col p,
+.footer__col li {
+  font-size: 0.92rem;
+  margin-bottom: 0.6rem;
+  color: var(--color-footer-text);
+}
+
+.footer__col a {
+  transition: color 0.15s ease;
+}
+
+.footer__col a:hover {
+  color: var(--color-accent);
+}
+
+.footer__social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer__social li {
+  margin-bottom: 0; /* το spacing το δίνει το flex gap, όχι το margin — ίδιο ύψος με τις άλλες στήλες */
+}
+
+.footer__social a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.footer__social .social-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.footer__payments {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+}
+
+.payment-icon {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+.footer__bottom {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-top: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* =========================================================
+   PAGE BANNER (subpages: About us, Partners, Taxi/Tour Service)
+   ========================================================= */
+.hero--sub {
+  min-height: 336px; /* 280px + 20% */
+  /* Ίδιο σκούρο χρώμα με το φόντο του footer, αντί για το τιρκουάζ
+     gradient του κεντρικού hero. */
+  background: var(--color-footer-bg);
+}
+
+.hero--sub::before {
+  width: 260px;
+  height: 260px;
+  top: -80px;
+  right: -60px;
+}
+
+.hero--sub::after {
+  width: 180px;
+  height: 180px;
+  bottom: -70px;
+  left: -50px;
+}
+
+.hero--sub .hero__content p {
+  margin-bottom: 0;
+}
+
+/* Ο τίτλος στο πράσινο banner των υποσελίδων λίγο πιο χαμηλά (όχι
+   κολλητά στην κορυφή) — ίδιο σε όλες τις σελίδες που μοιράζονται
+   αυτό το banner (About us, Partners, Taxi/Tour Service, κ.λπ.). */
+.hero--sub .hero__content {
+  padding-top: 3.25rem;
+}
+
+/* =========================================================
+   GENERIC PAGE CONTENT (subpages)
+   ========================================================= */
+.page-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.page-content + .page-content {
+  border-top: 1px solid var(--color-border);
+}
+
+.page-content--alt {
+  background: var(--color-surface);
+}
+
+/* CTA section κεντραρισμένη (π.χ. "Enjoy your stay to a maximum", Tour
+   Service) — τίτλος + κουμπί στο κέντρο, χωρίς λευκό φόντο (διαφανές,
+   δείχνει το --color-bg). Λιγότερο padding-top ώστε να ανεβαίνουν λίγο
+   πιο ψηλά. Διαφορετική κλάση από το .page-content--cta (Taxi Service),
+   που είναι αριστερά στοιχισμένο. */
+.page-content--cta-center {
+  text-align: center;
+  padding-top: 1.5rem;
+}
+
+.page-content--cta-center h2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-content h2 {
+  color: var(--color-primary-dark);
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+.page-content p {
+  color: var(--color-text-muted);
+  max-width: 800px;
+  margin-bottom: 1rem;
+}
+
+/* Νομικά κείμενα (Terms & Conditions, Privacy Policy) — πολλά διαδοχικά
+   h2/p, χρειάζονται λίγο περισσότερο κενό πάνω από κάθε ενότητα */
+.legal-content h2 {
+  margin-top: 2rem;
+}
+
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+
+.legal-content p a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.page-content .btn {
+  margin-top: 0.5rem;
+}
+
+/* Stats row (About us) */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.stats-row .stat strong {
+  display: block;
+  font-size: 2rem;
+  color: var(--color-primary);
+}
+
+.stats-row .stat span {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 900px) {
+  .navbar__menu {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0.5rem 1.5rem 1rem;
+    box-shadow: var(--shadow);
+
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: max-height 0.25s ease;
+  }
+
+  .navbar__menu.is-open {
+    max-height: 400px;
+    visibility: visible;
+  }
+
+  .navbar__menu > li {
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  /* Το mobile panel έχει πάντα λευκό αδιαφανές φόντο, οπότε το κείμενο
+     μένει σκούρο ανεξάρτητα από την κατάσταση (διάφανο/συμπαγές) του header */
+  .navbar__menu > li > a {
+    color: var(--color-text);
+  }
+
+  .has-dropdown .dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none;
+    box-shadow: none;
+    padding-left: 1rem;
+  }
+
+  .has-dropdown.is-open .dropdown {
+    display: block;
+  }
+
+  .navbar__actions {
+    display: none;
+  }
+
+  .navbar__toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero--sub {
+    min-height: 288px; /* 240px + 20% */
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .navbar__logo-img {
+    height: 48px;
+  }
+}

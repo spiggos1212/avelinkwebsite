@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partners</title>
+  <meta name="description" content="Whether you're an experienced property owner or just starting out in the vacation rental industry, Avelink is here to help you maximize your property's potential with professional, efficient property management solutions.">
+  <meta property="og:title" content="Partners">
+  <meta property="og:description" content="Whether you're an experienced property owner or just starting out in the vacation rental industry, Avelink is here to help you maximize your property's potential with professional, efficient property management solutions.">
+  <link rel="icon" href="images/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="images/favicon-192x192.png" sizes="192x192" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER / NAVIGATION ============ -->
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="navbar__logo">
+        <a href="index.html">
+          <img src="images/logo-white.png" alt="Avelink" class="navbar__logo-img navbar__logo-img--white">
+          <img src="images/logo-color.png" alt="Avelink" class="navbar__logo-img navbar__logo-img--color">
+        </a>
+      </div>
+
+      <ul class="navbar__menu" id="navbarMenu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#properties">Properties</a></li>
+        <li class="has-dropdown">
+          <a href="#services">Services</a>
+          <ul class="dropdown">
+            <li><a href="taxi-service.html">Taxi Service</a></li>
+            <li><a href="tour-service.html">Tour Service</a></li>
+          </ul>
+        </li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <select class="lang-select">
+          <option value="el">Ελληνικά</option>
+          <option value="en">English</option>
+        </select>
+        <a href="https://menoapartments.reserve-online.net/" class="btn btn--book" target="_blank" rel="noopener">Book Now</a>
+      </div>
+
+      <button class="navbar__toggle" id="navbarToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navbarMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ============ PAGE BANNER ============ -->
+  <section class="hero hero--sub">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1>Partners</h1>
+    </div>
+  </section>
+
+  <!-- ============ WELCOME TO AVELINK ============
+       Κείμενο αυτολεξεί από avelink.gr/partners/ -->
+  <section class="page-content">
+    <h2>Managing your property has never been easier</h2>
+    <p>
+      Whether you're an experienced property owner or just starting out in the vacation
+      rental industry, we're here to help you maximize your property's potential.
+    </p>
+    <p>
+      Avelink is a comprehensive property management company offering professional and
+      efficient solutions, ensuring optimal operation and a top-tier hospitality experience
+      for your guests.
+    </p>
+    <p>
+      You simply enjoy the benefits of your investment, without any hassle.
+    </p>
+  </section>
+
+  <!-- ============ WE HANDLE EVERYTHING ============ -->
+  <section class="page-content">
+    <h2>We handle everything</h2>
+    <p>
+      From creating professional profiles on platforms and photography to full property
+      preparation and daily guest communication — we take care of everything. You simply
+      watch your property perform at its best, without having to deal with anything.
+    </p>
+  </section>
+
+  <!-- ============ PROFESSIONAL MANAGEMENT ============ -->
+  <section class="page-content">
+    <h2>Professional management</h2>
+    <p>
+      The services we offer meet—and exceed—hotel standards. We take care of every detail
+      to ensure your guests have a high-level accommodation experience.
+    </p>
+  </section>
+
+  <!-- ============ TRANSPARENCY AND STATISTICS ============ -->
+  <section class="page-content">
+    <h2>Transparency and statistics</h2>
+    <p>
+      At Avelink, we believe that every partnership should be based on trust. That's why we
+      provide property owners with a comprehensive view of their property's performance
+      through monthly reports featuring detailed statistics and returns. You always know
+      how your investment is performing—with complete transparency.
+    </p>
+  </section>
+
+  <!-- ============ PARTNER FORM ============ -->
+  <section class="page-content" id="partner-form">
+    <h2>Partner Form</h2>
+    <!-- Η φόρμα στέλνει με POST στο FormSubmit.co, το οποίο προωθεί τα
+         στοιχεία ως email στο partners@avelink.gr — χωρίς να χρειάζεται
+         δικός μας server. ΣΗΜΑΝΤΙΚΟ: την πρώτη φορά που θα υποβληθεί η
+         φόρμα, το FormSubmit στέλνει ένα email επιβεβαίωσης στο
+         partners@avelink.gr που πρέπει να ανοιχτεί/επιβεβαιωθεί μία
+         φορά, πριν αρχίσουν να περνάνε κανονικά τα επόμενα μηνύματα. -->
+    <form class="partner-form" action="https://formsubmit.co/partners@avelink.gr" method="POST">
+      <input type="hidden" name="_subject" value="New Partner Form submission — Avelink">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="form-row">
+        <label for="pf-first-name">First name</label>
+        <input type="text" id="pf-first-name" name="first_name" required>
+      </div>
+
+      <div class="form-row">
+        <label for="pf-last-name">Last name</label>
+        <input type="text" id="pf-last-name" name="last_name" required>
+      </div>
+
+      <div class="form-row">
+        <label for="pf-email">Email</label>
+        <input type="email" id="pf-email" name="email" required>
+      </div>
+
+      <div class="form-row">
+        <label for="pf-phone">Phone number</label>
+        <input type="tel" id="pf-phone" name="phone" required>
+      </div>
+
+      <div class="form-row">
+        <span class="form-row__label">I am</span>
+        <div class="form-row__radios">
+          <label><input type="radio" name="type" value="private" checked> Private individual</label>
+          <label><input type="radio" name="type" value="business"> Business</label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="pf-units">
+          The number of my accommodations/rooms is:
+          <span id="pf-units-value" class="form-row__range-value">1</span>
+        </label>
+        <input type="range" id="pf-units" name="units" class="form-row__range" min="1" max="25" value="1">
+        <div class="form-row__range-scale"><span>1</span><span>25</span></div>
+      </div>
+
+      <div class="form-row">
+        <label for="pf-years">Years in operation</label>
+        <select id="pf-years" name="years">
+          <option value="not-started">I haven't started yet</option>
+          <option value="1-3">1-3</option>
+          <option value="4+">4+</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn--green">Enter</button>
+    </form>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="contact" class="site-footer">
+    <div class="footer__grid">
+
+      <div class="footer__col">
+        <h4>Directions</h4>
+        <ul>
+          <li><a href="https://www.google.com/maps/place/Cinema+Zeus+Studios/@37.9588543,23.9221323,18z/data=!4m9!3m8!1s0x14a19b4ba147fa73:0x21a8716883512f60!5m2!4m1!1i2!8m2!3d37.9594385!4d23.9235878!16s%2Fg%2F11jn3bsspl" target="_blank" rel="noopener">Cinema Zeus Studios</a></li>
+          <li><a href="https://www.google.com/maps/place/Boutique+Studios+%26+Apartments/@37.9610738,23.9150298,19z/data=!4m6!3m5!1s0x14a19bf239e1ccbb:0x763ece8b5134db16!8m2!3d37.9614839!4d23.9154619!16s%2Fg%2F11sqcvvf23" target="_blank" rel="noopener">Boutique Studios &amp; Apartments</a></li>
+          <li><a href="https://www.google.com/maps/place/Hall+Apartments+%26+Rooms/@37.9597885,23.9163919,19z/data=!4m9!3m8!1s0x14a19b7233044201:0xbeb8501b029a70ab!5m2!4m1!1i2!8m2!3d37.959919!4d23.9161556!16s%2Fg%2F11s1tx528l" target="_blank" rel="noopener">Hall Apartments &amp; Rooms</a></li>
+          <li><a href="https://tinyurl.com/2p86tsnh" target="_blank" rel="noopener">The Cellar Studios</a></li>
+          <li><a href="https://www.google.com/maps/place/Spata+center+loft/@37.9619391,23.915207,150m/data=!3m1!1e3!4m14!1m2!2m1!1sloft+studios+spata+!3m10!1s0x14a19a850db42745:0x6afe5a54d5dfa51a!5m2!4m1!1i2!8m2!3d37.962059!4d23.9155693!15sChJsb2Z0IHN0dWRpb3Mgc3BhdGGSAQ92YWNhdGlvbl9yZW50YWzgAQA!16s%2Fg%2F11zkwgf72q!17BQ0FF?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Loft Suites</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li>📞 +30-6971975136</li>
+          <li>☎️ +(30) 2102206047</li>
+          <li>✉️ info@avelink.gr</li>
+          <li>✉️ partners@avelink.gr</li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Follow us</h4>
+        <ul class="footer__social">
+          <li><a href="https://www.facebook.com/avelinkfb" target="_blank" rel="noopener">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.5c0-.87.24-1.46 1.5-1.46H16.5V4.35C16.24 4.32 15.34 4.24 14.3 4.24c-2.16 0-3.64 1.32-3.64 3.75V10.5H8.2v3h2.46V21h2.84Z"/></svg>
+            Facebook
+          </a></li>
+          <li><a href="https://www.instagram.com/avelink.gr/" target="_blank" rel="noopener">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="#fff" stroke="none"/></svg>
+            Instagram
+          </a></li>
+          <li><a href="https://www.tiktok.com/@avelink.gr?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.7 3.6 3.8 3.9v2.9c-1.3-.03-2.6-.4-3.8-1.1v6.6c0 3.2-2.6 5.7-5.8 5.7S5 18.5 5 15.3s2.6-5.7 5.8-5.7c.3 0 .6.02.9.06v3c-.3-.1-.6-.14-.9-.14-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.8-1.1 2.8-2.7V3h3Z"/></svg>
+            TikTok
+          </a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Our Policies</h4>
+        <ul>
+          <li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__payments">
+      <img src="images/payment-cards.png" alt="Visa, Mastercard" class="payment-icon">
+      <img src="images/payment-everypay.png" alt="EveryPay" class="payment-icon">
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; 2026 | Powered by Avelink</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
