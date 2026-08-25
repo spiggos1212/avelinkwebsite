@@ -793,10 +793,15 @@ img {
     gap: 0.5rem;
   }
 
+  /* Τα βελάκια (44px το καθένα + gaps) έτρωγαν μέρος του πλάτους του
+     .carousel__viewport, ενώ το slide υπολογιζόταν σαν να υπάρχει όλο
+     το πλάτος της οθόνης διαθέσιμο (min(320px, 85vw)) — αποτέλεσμα, η
+     εικόνα περικοπτόταν στο κινητό. Σε mobile τα κρύβουμε (υπάρχει ήδη
+     πλήρες swipe/drag από το JS) ώστε το viewport να πάρει όλο το
+     πλάτος και η κάρτα να φαίνεται ολόκληρη.
+  */
   .carousel__arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 1.25rem;
+    display: none;
   }
 
   .carousel__track {
@@ -855,7 +860,10 @@ img {
   width: 100%;
   border-collapse: collapse;
   background: var(--color-surface);
-  min-width: 420px;
+  /* Σκόπιμα ΧΩΡΙΣ min-width: με 2 μόνο στήλες η καρτέλα χωράει άνετα σε
+     πλάτος κινητού· ένα min-width εδώ ανάγκαζε το table να ξεπερνά το
+     πλάτος της οθόνης, οπότε το "Price" έμενε κομμένο δεξιά μέχρι να
+     κάνεις οριζόντιο swipe (.price-table-wrap { overflow-x: auto }). */
 }
 
 .price-table th,
@@ -1333,5 +1341,14 @@ img {
 
   .navbar__logo-img {
     height: 48px;
+  }
+
+  /* Λιγότερο padding στα κελιά των price tables (Taxi Service) ώστε οι
+     2 στήλες να χωράνε άνετα στο πλάτος ενός κινητού χωρίς οριζόντιο
+     scroll — βλ. σημείωση στο .price-table για το min-width που έφυγε. */
+  .price-table th,
+  .price-table td {
+    padding: 0.7rem 0.85rem;
+    font-size: 0.92rem;
   }
 }
