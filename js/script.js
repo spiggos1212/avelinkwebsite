@@ -20,10 +20,42 @@ document.addEventListener("DOMContentLoaded", () => {
   updateHeaderState();
   window.addEventListener("scroll", updateHeaderState, { passive: true });
 
+  // Dropdown (Services) — αναφορά χρειάζεται και στο closeMenu παρακάτω,
+  // οπότε δηλώνεται πριν.
+  const dropdownParent = document.querySelector(".has-dropdown");
+  const dropdownLink = dropdownParent.querySelector(":scope > a");
+
+  // Κλείσιμο mobile menu. Το "instant" παρακάμπτει το CSS transition
+  // (max-height): όταν το κλείσιμο συμπίπτει με ένα anchor link που κάνει
+  // τον browser να πηδήξει αμέσως σε άλλο σημείο της σελίδας (π.χ. #properties),
+  // ένα ταυτόχρονο transition πάνω σε position:absolute στοιχείο μπορεί σε
+  // ορισμένα κινητά (Android Chrome) να "κολλήσει" σε ενδιάμεσο frame αντί
+  // να ολοκληρωθεί — μένει δηλαδή ένα κομμάτι του menu (π.χ. "Tour Service")
+  // ορατό πάνω από το περιεχόμενο μετά το scroll. Κλείνοντας άμεσα (χωρίς
+  // animation) όποτε πρόκειται να ακολουθήσει navigation/scroll, δεν υπάρχει
+  // race μεταξύ των δύο.
+  const closeMenu = ({ instant = false } = {}) => {
+    if (instant) {
+      menu.style.transition = "none";
+    }
+    menu.classList.remove("is-open");
+    dropdownParent.classList.remove("is-open");
+    toggleBtn.setAttribute("aria-expanded", "false");
+    if (instant) {
+      menu.offsetHeight; // force reflow ώστε το "χωρίς transition" να εφαρμοστεί άμεσα
+      requestAnimationFrame(() => {
+        menu.style.transition = "";
+      });
+    }
+  };
+
   // Άνοιγμα / κλείσιμο mobile menu
   toggleBtn.addEventListener("click", () => {
     const isOpen = menu.classList.toggle("is-open");
     toggleBtn.setAttribute("aria-expanded", isOpen);
+    if (!isOpen) {
+      dropdownParent.classList.remove("is-open");
+    }
   });
 
   // Κλείσιμο menu όταν πατηθεί κάποιο link (χρήσιμο σε mobile).
@@ -35,15 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isDropdownToggle && window.innerWidth <= 900) {
         return;
       }
-      menu.classList.remove("is-open");
-      toggleBtn.setAttribute("aria-expanded", "false");
+      closeMenu({ instant: true });
     });
   });
-
-  // Dropdown (Services) — click toggle για mobile/touch,
-  // ενώ σε desktop δουλεύει ήδη με :hover μέσω CSS
-  const dropdownParent = document.querySelector(".has-dropdown");
-  const dropdownLink = dropdownParent.querySelector(":scope > a");
 
   dropdownLink.addEventListener("click", (e) => {
     if (window.innerWidth <= 900) {
