@@ -8,10 +8,10 @@
 #    replaces it: those URLs are already indexed/ranking, so map each old
 #    slug to its closest equivalent here instead of letting it 404.
 #    "/properties/" -> "/#properties" and "/contact/" -> "/#contact" because
-#    those are homepage sections now, not standalone pages. "/companyinfo/"
-#    (legal company registration info) and "/orderfood/" (food ordering)
-#    have no equivalent content on this site yet — reviewed and mapped to
-#    the closest existing page for now.
+#    those are homepage sections now, not standalone pages. "/orderfood/"
+#    (food ordering) has no equivalent content on this site yet — reviewed
+#    and redirected to the homepage for now. "/companyinfo" now has a real
+#    page here (legal company registration info) instead of a redirect.
 # 3) The old site's Greek version (/el/*) has no equivalent here yet (this
 #    site is English-only) — sent to the English homepage rather than 404.
 
@@ -22,6 +22,7 @@
 /tour-service/          /tour-service           301
 /terms-and-conditions/  /terms-and-conditions   301
 /privacy-policy/        /privacy-policy         301
+/companyinfo/           /companyinfo            301
 
 # --- renamed pages from the old WordPress site ---
 /aboutus/       /about          301
@@ -41,8 +42,6 @@
 /contact        /#contact       301
 
 # --- pages with no equivalent yet: closest match ---
-/companyinfo/   /about          301
-/companyinfo    /about          301
 /orderfood/     /               301
 /orderfood      /               301
 
